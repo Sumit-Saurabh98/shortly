@@ -91,7 +91,13 @@ export default function Page() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
               >
-                VideoAI
+                <Image
+                  src="/logo.png"
+                  alt="Logo"
+                  width={100}
+                  height={100}
+                  className="w-30 h-30"
+                />
               </motion.span>
             </div>
 

@@ -1,7 +1,8 @@
-import { Video, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = ({
   isMenuOpen,
@@ -22,8 +23,13 @@ const Navbar = ({
           <div className="flex items-center justify-between h-16">
             {/* Logo and Brand */}
             <div className="flex items-center space-x-2">
-              <Video className="h-8 w-8 text-white" />
-              <span className="text-xl font-bold text-white">VideoGen AI</span>
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                width={100}
+                height={100}
+                className="w-30 h-30"
+              />  
             </div>
 
             {/* Desktop Navigation */}
