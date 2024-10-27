@@ -66,9 +66,11 @@ export default function LandingPage() {
                 className="flex flex-col sm:flex-row gap-4"
               >
                 {user ? (
-                  <button className="px-8 py-4 bg-white text-purple-600 rounded-lg font-bold hover:bg-purple-100 transition-colors">
-                    Dashboard
-                  </button>
+                  <Link href="/dashboard">
+                    <button className="px-8 py-4 bg-white text-purple-600 rounded-lg font-bold hover:bg-purple-100 transition-colors">
+                      Dashboard
+                    </button>
+                  </Link>
                 ) : (
                   <Link href="/sign-in">
                     <button className="px-8 py-4 bg-white text-purple-600 rounded-lg font-bold hover:bg-purple-100 transition-colors">
