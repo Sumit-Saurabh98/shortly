@@ -12,6 +12,8 @@
 # next.js
 /.next/
 /out/
+
+# dot env files
 .env*
 .env
 
