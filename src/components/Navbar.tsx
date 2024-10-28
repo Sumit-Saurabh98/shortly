@@ -23,6 +23,7 @@ const Navbar = ({
           <div className="flex items-center justify-between h-16">
             {/* Logo and Brand */}
             <div className="flex items-center space-x-2">
+              <Link href={"/"}>
               <Image
                 src="/logo.png"
                 alt="Logo"
@@ -30,6 +31,7 @@ const Navbar = ({
                 height={100}
                 className="w-30 h-30"
               />  
+              </Link>
             </div>
 
             {/* Desktop Navigation */}
