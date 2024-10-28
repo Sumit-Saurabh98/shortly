@@ -1,22 +1,65 @@
-"use client"
+"use client";
 import { motion } from "framer-motion";
 import { Video, Sparkles } from "lucide-react";
 import SelectDuration from "@/components/SelectDuration";
 import SelectStyle from "@/components/SelectStyle";
 import SelectTopic from "@/components/SelectTopic";
 import { useState } from "react";
+import axios from "axios";
+import CustomLoading from "@/components/CustomLoading";
 
 export default function Page() {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    duration: "",
+    imageStyle: "",
+    topic: "",
+  });
+
+  interface IVideoScriptWithImagePrompt{
+    contentText: string;
+    imagePrompt: string;
+  }
+
+  const [loading, setLoading] = useState<boolean>(false);
+  const [videoScriptWithImagePrompt, setVideoScriptWithImagePrompt] = useState<IVideoScriptWithImagePrompt[]>([]); 
 
   const onHandleInputChange = (fieldName: string, fieldValue: string) => {
     setFormData({ ...formData, [fieldName]: fieldValue });
   };
 
-  console.log(formData, "formData");
+  console.log("videoScriptWithImagePrompt", videoScriptWithImagePrompt);
+
+  // get video script
+
+  const getVideoScript = async () => {
+    setLoading(true);
+    const prompt =
+      "write a script to generate " +
+      formData.duration +
+      " seconds video on topic : " +
+      formData.topic +
+      " story along with AI image prompts in " +
+      formData.imageStyle +
+      " format for each scene and give me result in json format with imagePrompt and contentText as field, No plain text.";
+
+    await axios
+      .post("/api/get-video-script", {
+        prompt: prompt,
+      })
+      .then((res) => {
+        console.log(res.data.result);
+        setVideoScriptWithImagePrompt(res.data.result);
+      });
+
+    setLoading(false);
+  };
+
+  const onCreateClickHandler = () => {
+    getVideoScript();
+  };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="min-h-screen bg-gradient-to-br from-purple-400 via-purple-600 to-purple-800"
@@ -41,8 +84,9 @@ export default function Page() {
           <SelectTopic onUserSelect={onHandleInputChange} />
           <SelectStyle onUserSelect={onHandleInputChange} />
           <SelectDuration onUserSelect={onHandleInputChange} />
-          
+
           <motion.button
+            onClick={onCreateClickHandler}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="w-full mt-8 bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4 px-8 rounded-lg font-bold text-lg flex items-center justify-center gap-2"
@@ -52,6 +96,11 @@ export default function Page() {
           </motion.button>
         </motion.div>
       </div>
+      <CustomLoading loading={loading}/>
     </motion.div>
   );
 }
+
+/*
+write a script to generate 30 seconds video on topic : interesting historical story along with AI image prompts in Realistic format for each scene and give me result in json format with imagePrompt and contentText as field, No plain text.
+*/

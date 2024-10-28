@@ -1,0 +1,67 @@
+<mxfile host="65bd71144e">
+    <diagram id="AOVfJlRYqeY38SF8z4KN" name="Page-1">
+        <mxGraphModel dx="910" dy="545" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="7" value="" style="edgeStyle=none;html=1;fontSize=19;fontColor=#000005;" edge="1" parent="1" source="2" target="6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="&lt;span style=&quot;font-size: 19px;&quot;&gt;User data&lt;br&gt;{duration:30, imageStple:cartoon, topic:Historical facts}&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="285" y="10" width="340" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="" style="edgeStyle=none;html=1;fontSize=16;fontColor=#000005;" edge="1" parent="1" source="6" target="8">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Generate video script with Gemini AI&lt;br&gt;(Video script + prompt to generate image)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="300" y="210" width="310" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=17;fontColor=#FFFFFF;" edge="1" parent="1" source="8" target="12">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="" style="edgeStyle=none;html=1;fontSize=17;fontColor=#FFFFFF;" edge="1" parent="1" source="8" target="18">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;Convert script to audio mp3 (Google cloud text to speech api)&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="295" y="400" width="320" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Save the audio mp3 file in firebase storeage" style="shape=datastore;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontSize=17;" vertex="1" parent="1">
+                    <mxGeometry x="730" y="367.5" width="280" height="155" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=19;fontColor=#FFFFFF;" edge="1" parent="1" source="18" target="20">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="" style="edgeStyle=none;html=1;fontSize=19;fontColor=#FFFFFF;" edge="1" parent="1" source="18" target="22">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="&lt;font style=&quot;font-size: 19px;&quot;&gt;Generate Caption file in .SRT formate&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="285" y="660" width="340" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="Save the .srt file in firebase storeage" style="shape=datastore;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontSize=17;" vertex="1" parent="1">
+                    <mxGeometry x="740" y="620" width="280" height="155" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" style="edgeStyle=none;html=1;entryX=0;entryY=0.587;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=18;fontColor=#FFFFFF;" edge="1" parent="1" source="22" target="24">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=18;fontColor=#FFFFFF;" edge="1" parent="1" source="22" target="26">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Generate AI image from image prompts&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="275" y="930" width="365" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="Save the image in firebase storeage" style="shape=datastore;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontSize=17;" vertex="1" parent="1">
+                    <mxGeometry x="740" y="887.5" width="280" height="155" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="" style="edgeStyle=none;html=1;fontSize=18;fontColor=#FFFFFF;" edge="1" parent="1" source="26" target="28">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="Save all the data block in firebse storage" style="shape=datastore;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontSize=17;" vertex="1" parent="1">
+                    <mxGeometry x="317.5" y="1210" width="280" height="155" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="Convert into a video" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;labelBackgroundColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="252.5" y="1492.5" width="410" height="107.5" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
