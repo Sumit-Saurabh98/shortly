@@ -13,6 +13,8 @@ export default function Page() {
     setFormData({ ...formData, [fieldName]: fieldValue });
   };
 
+  console.log(formData, "formData");
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}

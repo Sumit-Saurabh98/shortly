@@ -47,6 +47,9 @@ const SelectStyle = ({ onUserSelect }: { onUserSelect: (key: string, value: stri
                 src={option.image}
                 alt={option.name}
                 fill
+                priority
+                sizes="(max-width: 768px) 100vw"
+                style={{ objectFit: "cover" }}
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent" />

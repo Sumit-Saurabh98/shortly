@@ -1,6 +1,7 @@
 "use client";
 import NoItems from "@/components/NoItems";
 import { motion } from "framer-motion";
+import { Video } from "lucide-react";
 import Image from "next/image";
 
 interface ChildComponentProps {
@@ -28,6 +29,15 @@ export default function Page({ isSidebarOpen }: ChildComponentProps) {
   };
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-400 via-purple-400 to-purple-500">
+        <motion.div
+          initial={{ y: -20 }}
+          animate={{ y: 0 }}
+          className="text-center mb-2"
+        >
+          <h1 className="text-4xl md:text-6xl font-bold text-white mt-10 flex items-center justify-center gap-2">
+            Your Videos <Video className="w-14 h-14" />
+          </h1>
+        </motion.div>
       <div className="flex pt-5">
         <motion.main
           className={`flex-1 p-4 transition-margin duration-300 ${
@@ -54,6 +64,7 @@ export default function Page({ isSidebarOpen }: ChildComponentProps) {
                       src="/temp.webp"
                       alt="Video thumbnail"
                       fill
+                      priority
                       className="absolute inset-0 object-cover rounded-lg"
                     />
                   </div>
