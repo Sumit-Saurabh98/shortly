@@ -15,43 +15,77 @@ export default function Page() {
     topic: "",
   });
 
-  interface IVideoScriptWithImagePrompt{
+  interface IVideoScriptWithImagePrompt {
     contentText: string;
     imagePrompt: string;
   }
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [videoScriptWithImagePrompt, setVideoScriptWithImagePrompt] = useState<IVideoScriptWithImagePrompt[]>([]); 
+  const [videoScriptWithImagePrompt, setVideoScriptWithImagePrompt] = useState<
+    IVideoScriptWithImagePrompt[]
+  >([]);
+  const [audioFileUrl, setAudioFileUrl] = useState<string>("");
 
   const onHandleInputChange = (fieldName: string, fieldValue: string) => {
     setFormData({ ...formData, [fieldName]: fieldValue });
   };
 
-  console.log("videoScriptWithImagePrompt", videoScriptWithImagePrompt);
-
   // get video script
 
   const getVideoScript = async () => {
-    setLoading(true);
-    const prompt =
-      "write a script to generate " +
-      formData.duration +
-      " seconds video on topic : " +
-      formData.topic +
-      " story along with AI image prompts in " +
-      formData.imageStyle +
-      " format for each scene and give me result in json format with imagePrompt and contentText as field, No plain text.";
+    try {
+      setLoading(true);
+      const prompt =
+        "write a script to generate " +
+        formData.duration +
+        " seconds video on topic : " +
+        formData.topic +
+        " story along with AI image prompts in " +
+        formData.imageStyle +
+        " format for each scene and give me result in json format with imagePrompt and contentText as field, No plain text.";
 
-    await axios
-      .post("/api/get-video-script", {
-        prompt: prompt,
-      })
-      .then((res) => {
-        console.log(res.data.result);
-        setVideoScriptWithImagePrompt(res.data.result);
+      const res = await axios
+        .post("/api/get-video-script", {
+          prompt: prompt,
+        })
+          // console.log(res.data.result);
+          setVideoScriptWithImagePrompt(res.data.result);
+          GenerateAudioFile(res.data.result);
+
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }finally{
+      setLoading(false);
+    }
+  };
+
+  const GenerateAudioFile = async (
+    videoScriptData: IVideoScriptWithImagePrompt[]
+  ) => {
+    try {
+      setLoading(true);
+      let script = "";
+      videoScriptData.forEach((item) => {
+        script += item.contentText + " ";
       });
 
-    setLoading(false);
+      const response = await axios.post("/api/generate-audio", {
+        text: script,
+        languageCode: "hi-IN",
+        ssmlGender: "FEMALE",
+      });
+
+      setAudioFileUrl(response.data.audioUrl);
+
+      setLoading(false);
+    } catch (error) {
+      console.log("Error while generating audio", error);
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const onCreateClickHandler = () => {
@@ -96,7 +130,7 @@ export default function Page() {
           </motion.button>
         </motion.div>
       </div>
-      <CustomLoading loading={loading}/>
+      <CustomLoading loading={loading} />
     </motion.div>
   );
 }

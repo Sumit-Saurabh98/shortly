@@ -48,6 +48,7 @@ const TopHeader = ({
                   alt="Logo"
                   width={100}
                   height={40}
+                  priority
                   className="h-8 w-auto"
                 />
               </motion.div>
